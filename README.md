@@ -386,3 +386,165 @@ ZooKeeper有了解吗？redis和Mencache的选型问题?
 spring framework都有哪些模块？你使用到了哪些模块？怎么使用的？   
 使用的时候有没有对某模块功能进行扩展？   
 说一下集合类（线程安全角度）   
+
+# shanhe面经
+
+## 阿里CCO一面
+
+- 自我介绍
+- 聊了些经历,因为我本科毕业后中间有三年左右的gap,问了我是否从事互联网行业工作
+- 项目中有什么亮点(其他的一些项目细节,比如项目是否已经运行?是否有人使用?抛开中间件,你怎么设计一个用户权限或者搜索?)
+- 你在项目管理中是怎么做的?
+- 用户登陆是怎么做的?
+- cookie和session的区别
+- java有几个基本数据类型,分别是多少字节?
+- java中的访问权限有哪些,分别是什么意思?
+- 为什么hashCode()方法和equals()方法要一起重写?
+- 两个不同的对象可以有相同的hash值吗?
+- HashMap底层结构是什么
+- 线程池知道吗?
+- 有哪些核心属性?
+- 如何建立一个线程池
+- 请描述一下线程池中的线程增加并达到最大的过程
+- 线程池达到最大并且等待队列也满了以后,还有线程申请调用线程池内的线程进行任务,会发生什么?
+- Threadlocal了解吗?
+- 有没有遇到过栈溢出或者内存溢出?怎么解决的?
+- heap堆里面的溢出是怎么解决的?
+- 描述一下jvm内存模型
+- heap堆里面更细分的有哪些区域?
+- 平时使用什么数据库?
+- 数据库事务有哪些属性?
+- 一致性是什么意思?
+- 数据库并发会带来哪些问题?
+- 详细描述一下数据丢失的场景
+- MySQL是怎么解决数据丢失的?
+- 索引有了解吗?为什么使用索引更快?
+- 你刚才提到了回表,为什么回表次数更少?
+- 索引的数据结构是什么样的?
+- SQL优化有了解吗?是否在实际中使用过?
+- 如果让你进行优化,你会从哪方面进行考虑?
+- 你刚才提到了分表,具体如何操作?
+- 分库如何保证key值唯一?
+- 你刚才提到了使用不同的步长保证key值唯一,那么具体操作该怎么做呢?
+- 并发情况下如何保证数据的一致性?
+- 你刚才提到使用sycronized,这个是jvm提供的锁机制,在分布式系统下是不生效的,那么我们如何在分布式下保证数据的一致性?
+- Linux了解吗?知道哪些命令?
+- 如何在一个文件中查找某个字符串出现的次数
+- 你使用过哪些设计模式
+- 工厂模式有很多,抽象工厂、变量工厂等,请你详细说明一下他们的应用场景
+- 单例模式分几种分别是什么?
+- Spring的特性是什么?
+- AOP是如何实现的?
+- 描述一下MVC模式
+- 最后问一下TCP协议中的三次握手是什么?为什么非要三次?
+- 平时喜欢看什么书?
+- 从什么时候开始接触的互联网这行?
+- 你还有什么问题吗?
+
+## 阿里飞猪一面(第二次打电话凉)
+
+- static了解吗?有哪些特性?
+- 为什么static修饰的方法无法被非static修饰的方法使用?
+- ArrayList和LinkedList的区别
+- TreeMap和HashMap有什么区别?
+- HashMap底层实现?
+- 多态了解吗?
+- 下面程序输出的是什么?
+
+```java
+class A{
+    public String show(D obj){
+        return ("A D");
+    }
+
+    public String show(A obj){
+        return ("A A");
+    }
+}
+
+class B extends A {
+    public String show(B obj){//
+        return ("B B");
+    }
+
+    public String show(A obj){
+        return ("B A");
+    }
+
+}
+
+class C extends B{}
+
+class D extends B{}
+
+class Test {
+
+    public static void main(String [] args) {
+        A a1 = new A();
+        A a2 = new B();
+        B b = new B();
+        C c = new C();
+        D d = new D();
+
+        System.out.println(a1.show(b));   //① A A
+
+        System.out.println(a1.show(c));   //② A A
+
+        System.out.println(a1.show(d));   //③ A D
+
+        System.out.println(a2.show(b));   //④ B A
+
+        System.out.println(a2.show(c));   //⑤ B A
+
+        System.out.println(a2.show(d));  // ⑥ A D
+
+        System.out.println(b.show(b));    //⑦ B B
+
+        System.out.println(b.show(c));    //⑧ B B
+
+        System.out.println(b.show(d));    //⑨ A D
+    }
+}
+
+```
+
+- 在一段程序中,有可能抛异常,但是我们某段代码一定要在最后执行,如何实现?
+- 哪些排序的时间复杂度是O(nlogn)?
+- 然后是一个算法题,检验括号有效性,输入只有括号,有效输出true否则false,要求时间复杂度O(n),空间复杂度O(1)
+- 如下表格如何找出数学成绩大于80的同学的学生信息
+
+```
+   tbl_student
+Name     age     Height
+Lily   18  50
+Jim    19   60
+Ann    18  48
+  
+   tbl_score
+Id  Name Math English
+1 Jim  90 90
+2 Mei 80 80
+3 Lily 70 90
+```
+
+二面没问啥东西,挂得莫名其妙
+
+## 腾讯wxg一面(直接凉,自此就是腾讯黑)
+
+- 自我介绍
+
+- 平时使用什么开发?
+
+- 会不会用C++(我说我不会,然后面试官:我们都是用C++的啊?然后开始走流程)
+
+- 接下来牛客两道题,简单得一批,但Java环境不能提交,一道是两个已排序链表合并到一个,一道是链表排序
+
+- 然后开始找我茬,看我第二题用的双链表问我为什么要增加时间复杂度?
+
+  我???要不是你不是在那儿不耐烦的催我写我能为了求尽快写完用双链表?
+
+- 然后问写些Linux命令
+- 如何查找进程,要求显示各个进程的负载率
+- 如何查找端口
+- 数据库的事务是什么?
+
